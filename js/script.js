@@ -63,4 +63,31 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+    // Mobile Menu Toggle
+    const mobileBtn = document.querySelector('.mobile-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const mobileIcon = mobileBtn.querySelector('i');
+
+    mobileBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // Toggle icon between bars and times
+        if (navLinks.classList.contains('active')) {
+            mobileIcon.classList.remove('fa-bars');
+            mobileIcon.classList.add('fa-times');
+        } else {
+            mobileIcon.classList.remove('fa-times');
+            mobileIcon.classList.add('fa-bars');
+        }
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // If it's the lang toggle, don't close immediately or do close? 
+            // Usually fine to close.
+            navLinks.classList.remove('active');
+            mobileIcon.classList.remove('fa-times');
+            mobileIcon.classList.add('fa-bars');
+        });
+    });
 });
